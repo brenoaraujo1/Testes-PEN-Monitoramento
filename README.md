@@ -164,11 +164,15 @@ Erros de API
 Uso de banco interno
 
 **4.2 Alertas Recomendados (Prometheus/Grafana)**
-Evento	Descrição	Ação recomendada
-Alta carga de CPU	CPU > 85% por 5 min	Acionar alerta
-Múltiplas falhas de login	> 10 tentativas/5 min	Registrar incidente
-Serviço parado	Prometheus ou Grafana offline	Notificar imediatamente
-Arquivo crítico alterado	/etc/passwd, /etc/shadow	Risco de intrusão
+
+
+| Evento                     | Descrição                       | Ação recomendada          |
+|---------------------------|----------------------------------|---------------------------|
+| Alta carga de CPU         | CPU > 85% por 5 min              | Acionar alerta            |
+| Múltiplas falhas de login | > 10 tentativas/5 min            | Registrar incidente       |
+| Serviço parado            | Prometheus ou Grafana offline    | Notificar imediatamente   |
+| Arquivo crítico alterado  | /etc/passwd, /etc/shadow         | Risco de intrusão         |
+
 
 **5) Futuro – Script de Monitoramento em Python
 5.1 Objetivo**
@@ -185,17 +189,17 @@ Enviar alertas (Telegram, Slack, e-mail, API, etc.)
 
 **5.2 Tecnologias sugeridas**
 
-psutil — métricas do sistema
+`psutil` — métricas do sistema
 
-subprocess — checagem de serviços
+`subprocess` — checagem de serviços
 
-argparse — parâmetros de execução
+`argparse` — parâmetros de execução
 
-logging — logs centralizados
+`logging` — logs centralizados
 
-requests — envio de alertas via API
+`requests` — envio de alertas via API
 
-sqlite ou json para armazenar histórico
+`sqlite` ou `json` para armazenar histórico
 
 **5.3 Eventos a monitorar via Python**
 
@@ -210,20 +214,21 @@ Reinício inesperado de serviços
 Checagem de integridade (hash de arquivos)
 
 **5.4 Possível ciclo de funcionamento**
-Coletar métricas → Detectar evento → Registrar log → Enviar alerta
-
+```python
+Coletar métricas → Detectar evento → Registrar log → Enviar alerta 
+```
 **5.5 Integração com Prometheus**
 
 O Python pode expor métricas via:
 
-/metrics
+`/metrics`
 
 
 para o Prometheus coletar.
 
 Exemplo de biblioteca:
 
-prometheus_client
+`prometheus_client`
 
 **6) Entregáveis do Projeto**
 6.1 Relatórios
