@@ -33,7 +33,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Enumeração de portas e serviços
 
-- Ferramentas: nmap, masscan, netstat
+- Ferramentas:`nmap`, `masscan`, `netstat`
 
 **3.2 Testes de Segurança de Serviços Prometheus e Grafana**
 **3.2.1 Prometheus**
@@ -42,18 +42,18 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - Exposição de porta sem autenticação
 
-  - Acesso não autorizado ao /metrics
+  - Acesso não autorizado ao `/metrics`
 
   - Falta de TLS/HTTPS
 
   - Configurações sensíveis expostas
 - Ferramentas:
 
-  - curl
+  - `curl`
 
-  - nikto
+  - `nikto`
 
-  - nmap
+  - `nmap`
 
 **3.2.2 Grafana**
 
@@ -70,9 +70,9 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
   - Plugins vulneráveis
 - Ferramentas:
 
-  - hydra
+  - `hydra`
 
-  - wpscan (adaptação para brute)
+  - `wpscan` (adaptação para brute)
 
 - **Mitigações Esperadas**
 
@@ -93,11 +93,11 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 - Análise de tráfego inseguro
 - Ferramentas:
 
-  - wireshark
+  - `wireshark`
 
-  - tcpdump
+  - `tcpdump`
 
-  - bettercap
+  - `bettercap`
 
 **3.4 Testes de Hardening do Sistema Operacional**
 
@@ -113,13 +113,13 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Script de checklist:
 
-  - lynis
+  - `lynis`
 
-  - chkrootkit
+  - `chkrootkit`
 
-  - clamav
+  - `clamav`
 
-  - systemctl list-units
+  - `systemctl list-units`
 
 **3.5 Testes de Escalação de Privilégio**
 
@@ -131,9 +131,9 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Ferramentas:
 
-  - linpeas.sh
+  - `linpeas.sh`
 
-  - linux-exploit-suggester
+  - `linux-exploit-suggester`
 
 **4) Testes de Monitoramento
 4.1 O que deve ser monitorado
@@ -173,7 +173,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 | Alta carga de CPU         | CPU > 85% por 5 min              | Acionar alerta            |
 | Múltiplas falhas de login | > 10 tentativas/5 min            | Registrar incidente       |
 | Serviço parado            | Prometheus ou Grafana offline    | Notificar imediatamente   |
-| Arquivo crítico alterado  | /etc/passwd, /etc/shadow         | Risco de intrusão         |
+| Arquivo crítico alterado  | `/etc/passwd`, `/etc/shadow`         | Risco de intrusão         |
 
 
 **5) Futuro – Script de Monitoramento em Python
