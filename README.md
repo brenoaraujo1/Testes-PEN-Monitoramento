@@ -276,4 +276,4 @@ para o Prometheus coletar.
 
 - Visibilidade completa do ambiente
 
-Script Python funcional com alertas
+- Script Python funcional com alertas
