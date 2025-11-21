@@ -1,14 +1,14 @@
 # Testes-PEN-Monitoramento
-Repositório utilizado para testes PEN e Monitoramento
+### Repositório utilizado para testes PEN e Monitoramento
 
 
-✅ **ESCOPO DE TESTES (PENTEST E MONITORAMENTO)**
-**1) Objetivo Geral**
+# ✅ **ESCOPO DE TESTES (PENTEST E MONITORAMENTO)**
+## **1) Objetivo Geral**
 
 Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento, identificando vulnerabilidades e assegurando que o sistema detecte, registre e alerte sobre eventos de risco.
 
-**2) Escopo de Testes**
-2.1 Infraestrutura Envolvida
+## **2) Escopo de Testes**
+### **2.1 Infraestrutura Envolvida**
 
 - Sistema operacional: Kali Linux
 
@@ -26,8 +26,8 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Banco de dados ou API coletando métricas
 
-**3) Testes de Pentest**
-3.1 Testes de Reconhecimento
+## **3) Testes de Pentest**
+### **3.1 Testes de Reconhecimento**
 
 - Coleta de informações públicas sobre o sistema
 
@@ -35,8 +35,8 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Ferramentas:`nmap`, `masscan`, `netstat`
 
-**3.2 Testes de Segurança de Serviços Prometheus e Grafana**
-**3.2.1 Prometheus**
+## **3.2 Testes de Segurança de Serviços Prometheus e Grafana**
+### **3.2.1 Prometheus**
 
 - Testar:
 
@@ -47,6 +47,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
   - Falta de TLS/HTTPS
 
   - Configurações sensíveis expostas
+
 - Ferramentas:
 
   - `curl`
@@ -55,7 +56,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - `nmap`
 
-**3.2.2 Grafana**
+### **3.2.2 Grafana**
 
 - Testar:
 
@@ -84,7 +85,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - Uso de roles e permissões
 
-**3.3 Testes de Rede**
+## **3.3 Testes de Rede**
 
 - Testes de firewall
 
@@ -99,7 +100,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - `bettercap`
 
-**3.4 Testes de Hardening do Sistema Operacional**
+## **3.4 Testes de Hardening do Sistema Operacional**
 
 - Verificação de falhas do Linux:
 
@@ -121,7 +122,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - `systemctl list-units`
 
-**3.5 Testes de Escalação de Privilégio**
+## **3.5 Testes de Escalação de Privilégio**
 
 - Exploits locais
 
@@ -135,9 +136,9 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
   - `linux-exploit-suggester`
 
-**4) Testes de Monitoramento
-4.1 O que deve ser monitorado
-4.1.1 Infraestrutura**
+## **4) Testes de Monitoramento**
+## **4.1 O que deve ser monitorado**
+### **4.1.1 Infraestrutura**
 
 - CPU, memória, disco, rede
 
@@ -145,7 +146,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Consumo anormal
 
-**4.1.2 Segurança**
+### **4.1.2 Segurança**
 
 - Tentativas de login falhas
 
@@ -155,7 +156,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Execução de processos suspeitos
 
-**4.1.3 Serviços Prometheus e Grafana**
+### **4.1.3 Serviços Prometheus e Grafana**
 
 - Disponibilidade (uptime)
 
@@ -165,7 +166,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Uso de banco interno
 
-**4.2 Alertas Recomendados (Prometheus/Grafana)**
+## **4.2 Alertas Recomendados (Prometheus/Grafana)**
 
 
 | Evento                     | Descrição                       | Ação recomendada          |
@@ -176,8 +177,8 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 | Arquivo crítico alterado  | `/etc/passwd`, `/etc/shadow`         | Risco de intrusão         |
 
 
-**5) Futuro – Script de Monitoramento em Python
-5.1 Objetivo**
+## **5) Futuro – Script de Monitoramento em Python**
+## **5.1 Objetivo**
 
 - Criar ferramenta própria para:
 
@@ -189,7 +190,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Enviar alertas (Telegram, Slack, e-mail, API, etc.)
 
-**5.2 Tecnologias sugeridas**
+## **5.2 Tecnologias sugeridas**
 
 `psutil` — métricas do sistema
 
@@ -203,7 +204,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 `sqlite` ou `json` para armazenar histórico
 
-**5.3 Eventos a monitorar via Python**
+## **5.3 Eventos a monitorar via Python**
 
 - Alterações em arquivos críticos
 
@@ -215,11 +216,11 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Checagem de integridade (hash de arquivos)
 
-**5.4 Possível ciclo de funcionamento**
+## **5.4 Possível ciclo de funcionamento**
 ```python
 Coletar métricas → Detectar evento → Registrar log → Enviar alerta 
 ```
-**5.5 Integração com Prometheus**
+## **5.5 Integração com Prometheus**
 
 - O Python pode expor métricas via:
 
@@ -232,8 +233,8 @@ para o Prometheus coletar.
 
 `prometheus_client`
 
-**6) Entregáveis do Projeto**
-6.1 Relatórios
+## **6) Entregáveis do Projeto**
+## **6.1 Relatórios**
 
 - Relatório de vulnerabilidades com:
 
@@ -245,7 +246,7 @@ para o Prometheus coletar.
 
   - Recomendação
 
-**6.2 Dashboard no Grafana**
+## **6.2 Dashboard no Grafana**
 
 - Contendo:
 
@@ -257,7 +258,7 @@ para o Prometheus coletar.
 
   - Indicadores de ataque
 
-**6.3 Documentação**
+## **6.3 Documentação**
 
 - Manual de resposta a incidentes
 
@@ -265,7 +266,7 @@ para o Prometheus coletar.
 
 - Plano de hardening
 
-**7) Critérios de Sucesso**
+## **7) Critérios de Sucesso**
 
 - 90%+ das vulnerabilidades corrigidas
 
