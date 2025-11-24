@@ -177,7 +177,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 | Arquivo crítico alterado  | `/etc/passwd`, `/etc/shadow`         | Risco de intrusão         |
 
 
-## **5) Futuro – Script de Monitoramento em Python**
+## **5) Futuro – Script de Monitoramento em Django Python**
 ## **5.1 Objetivo**
 
 - Criar ferramenta própria para:
