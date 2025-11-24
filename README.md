@@ -22,7 +22,7 @@ Avaliar a segurança, integridade e disponibilidade do ambiente de monitoramento
 
 - Possíveis integrações futuras:
 
-- Script Python de monitoramento personalizado
+- Script Python em Django de monitoramento personalizado
 
 - Banco de dados ou API coletando métricas
 
