@@ -13,86 +13,338 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1730480001,
+  "id": 0,
   "links": [],
   "panels": [
     {
-      "type": "row",
-      "title": "System Overview",
       "collapsed": false,
-      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 1 }
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "panels": [],
+      "title": "System Overview",
+      "type": "row"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
       "id": 1,
-      "type": "stat",
-      "title": "Uptime",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 1, "w": 6, "h": 3 },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
+          "editorMode": "code",
           "expr": "time() - node_boot_time_seconds",
+          "range": true,
           "refId": "A"
         }
       ],
-      "format": "s",
-      "valueName": "current"
+      "title": "Uptime - Seconds",
+      "type": "stat"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
       "id": 2,
-      "type": "stat",
-      "title": "CPU Load (1m)",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 6, "y": 1, "w": 6, "h": 3 },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "node_load1",
           "refId": "A"
         }
       ],
-      "valueName": "current"
+      "title": "CPU Load (1m)",
+      "type": "stat"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
       "id": 3,
-      "type": "stat",
-      "title": "Memory Available",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 12, "y": 1, "w": 6, "h": 3 },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "node_memory_MemAvailable_bytes",
           "refId": "A"
         }
       ],
-      "format": "bytes"
+      "title": "Memory Available",
+      "type": "stat"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
       "id": 4,
-      "type": "stat",
-      "title": "FS Free Space (/)",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 18, "y": 1, "w": 6, "h": 3 },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "node_filesystem_free_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}",
           "refId": "A"
         }
       ],
-      "format": "bytes"
+      "title": "FS Free Space (/)",
+      "type": "stat"
     },
     {
-      "type": "row",
-      "title": "CPU Usage During Stress",
       "collapsed": false,
-      "gridPos": { "x": 0, "y": 4, "w": 24, "h": 1 }
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 11,
+      "panels": [],
+      "title": "CPU Usage During Stress",
+      "type": "row"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
       "id": 5,
-      "type": "graph",
-      "title": "CPU Usage % by Mode",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 5, "w": 24, "h": 7 },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "rate(node_cpu_seconds_total{mode!=\"idle\"}[1m]) * 100",
@@ -100,21 +352,101 @@
           "refId": "A"
         }
       ],
-      "lines": true,
-      "fill": 1
+      "title": "CPU Usage % by Mode",
+      "type": "timeseries"
     },
     {
-      "type": "row",
-      "title": "Memory & Disk I/O",
       "collapsed": false,
-      "gridPos": { "x": 0, "y": 12, "w": 24, "h": 1 }
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Memory & Disk I/O",
+      "type": "row"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
       "id": 6,
-      "type": "graph",
-      "title": "Memory Usage (Used vs Free)",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 13, "w": 24, "h": 7 },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
@@ -127,15 +459,88 @@
           "refId": "B"
         }
       ],
-      "lines": true,
-      "fill": 3
+      "title": "Memory Usage (Used vs Free)",
+      "type": "timeseries"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
       "id": 7,
-      "type": "graph",
-      "title": "Disk I/O Ops",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 20, "w": 24, "h": 7 },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
           "expr": "rate(node_disk_reads_completed_total[1m])",
@@ -148,20 +553,36 @@
           "refId": "B"
         }
       ],
-      "lines": true
+      "title": "Disk I/O Ops",
+      "type": "timeseries"
     },
     {
-      "type": "row",
-      "title": "Network Monitoring",
       "collapsed": false,
-      "gridPos": { "x": 0, "y": 27, "w": 24, "h": 1 }
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Network Monitoring",
+      "type": "row"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
       "id": 8,
-      "type": "graph",
-      "title": "Network Traffic (Bytes/sec)",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 28, "w": 24, "h": 7 },
+      "options": {},
       "targets": [
         {
           "expr": "rate(node_network_receive_bytes_total{device!~\"lo\"}[1m])",
@@ -174,14 +595,23 @@
           "refId": "B"
         }
       ],
-      "lines": true
+      "title": "Network Traffic (Bytes/sec)",
+      "type": "timeseries"
     },
     {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
       "id": 9,
-      "type": "graph",
-      "title": "Network Packets (Packets/sec)",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 0, "y": 35, "w": 24, "h": 7 },
+      "options": {},
       "targets": [
         {
           "expr": "rate(node_network_receive_packets_total{device!~\"lo\"}[1m])",
@@ -194,21 +624,28 @@
           "refId": "B"
         }
       ],
-      "lines": true
+      "title": "Network Packets (Packets/sec)",
+      "type": "timeseries"
     }
   ],
-  "schemaVersion": 38,
-  "style": "dark",
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 42,
   "tags": [
     "node",
     "stress-test",
     "monitoring"
   ],
+  "templating": {
+    "list": []
+  },
   "time": {
     "from": "now-1h",
     "to": "now"
   },
+  "timepicker": {},
   "timezone": "browser",
-  "title": "VM2 Stress & Network Monitoring Dashboard",
-  "version": 1
+  "title": "(Version 2.0) VM2 Stress & Network Monitoring Dashboard",
+  "uid": "adgpfpr",
+  "version": 5
 }
