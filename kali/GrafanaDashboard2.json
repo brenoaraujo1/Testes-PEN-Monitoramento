@@ -1,0 +1,214 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1730480001,
+  "links": [],
+  "panels": [
+    {
+      "type": "row",
+      "title": "System Overview",
+      "collapsed": false,
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 1 }
+    },
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Uptime",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 1, "w": 6, "h": 3 },
+      "targets": [
+        {
+          "expr": "time() - node_boot_time_seconds",
+          "refId": "A"
+        }
+      ],
+      "format": "s",
+      "valueName": "current"
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "CPU Load (1m)",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 6, "y": 1, "w": 6, "h": 3 },
+      "targets": [
+        {
+          "expr": "node_load1",
+          "refId": "A"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Memory Available",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 12, "y": 1, "w": 6, "h": 3 },
+      "targets": [
+        {
+          "expr": "node_memory_MemAvailable_bytes",
+          "refId": "A"
+        }
+      ],
+      "format": "bytes"
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "FS Free Space (/)",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 18, "y": 1, "w": 6, "h": 3 },
+      "targets": [
+        {
+          "expr": "node_filesystem_free_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}",
+          "refId": "A"
+        }
+      ],
+      "format": "bytes"
+    },
+    {
+      "type": "row",
+      "title": "CPU Usage During Stress",
+      "collapsed": false,
+      "gridPos": { "x": 0, "y": 4, "w": 24, "h": 1 }
+    },
+    {
+      "id": 5,
+      "type": "graph",
+      "title": "CPU Usage % by Mode",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 5, "w": 24, "h": 7 },
+      "targets": [
+        {
+          "expr": "rate(node_cpu_seconds_total{mode!=\"idle\"}[1m]) * 100",
+          "legendFormat": "{{mode}}",
+          "refId": "A"
+        }
+      ],
+      "lines": true,
+      "fill": 1
+    },
+    {
+      "type": "row",
+      "title": "Memory & Disk I/O",
+      "collapsed": false,
+      "gridPos": { "x": 0, "y": 12, "w": 24, "h": 1 }
+    },
+    {
+      "id": 6,
+      "type": "graph",
+      "title": "Memory Usage (Used vs Free)",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 13, "w": 24, "h": 7 },
+      "targets": [
+        {
+          "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
+          "legendFormat": "Memory Used",
+          "refId": "A"
+        },
+        {
+          "expr": "node_memory_MemAvailable_bytes",
+          "legendFormat": "Memory Available",
+          "refId": "B"
+        }
+      ],
+      "lines": true,
+      "fill": 3
+    },
+    {
+      "id": 7,
+      "type": "graph",
+      "title": "Disk I/O Ops",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 20, "w": 24, "h": 7 },
+      "targets": [
+        {
+          "expr": "rate(node_disk_reads_completed_total[1m])",
+          "legendFormat": "Reads",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(node_disk_writes_completed_total[1m])",
+          "legendFormat": "Writes",
+          "refId": "B"
+        }
+      ],
+      "lines": true
+    },
+    {
+      "type": "row",
+      "title": "Network Monitoring",
+      "collapsed": false,
+      "gridPos": { "x": 0, "y": 27, "w": 24, "h": 1 }
+    },
+    {
+      "id": 8,
+      "type": "graph",
+      "title": "Network Traffic (Bytes/sec)",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 28, "w": 24, "h": 7 },
+      "targets": [
+        {
+          "expr": "rate(node_network_receive_bytes_total{device!~\"lo\"}[1m])",
+          "legendFormat": "{{device}} (RX)",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(node_network_transmit_bytes_total{device!~\"lo\"}[1m])",
+          "legendFormat": "{{device}} (TX)",
+          "refId": "B"
+        }
+      ],
+      "lines": true
+    },
+    {
+      "id": 9,
+      "type": "graph",
+      "title": "Network Packets (Packets/sec)",
+      "datasource": "Prometheus",
+      "gridPos": { "x": 0, "y": 35, "w": 24, "h": 7 },
+      "targets": [
+        {
+          "expr": "rate(node_network_receive_packets_total{device!~\"lo\"}[1m])",
+          "legendFormat": "{{device}} (RX packets)",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(node_network_transmit_packets_total{device!~\"lo\"}[1m])",
+          "legendFormat": "{{device}} (TX packets)",
+          "refId": "B"
+        }
+      ],
+      "lines": true
+    }
+  ],
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "node",
+    "stress-test",
+    "monitoring"
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "VM2 Stress & Network Monitoring Dashboard",
+  "version": 1
+}
