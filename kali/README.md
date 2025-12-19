@@ -233,7 +233,7 @@ Reinicie:
 
 **Dashboards Recomendados**
 
-|**Dashboard ID**|		**Purpose**                       |
+|**Dashboard ID**|		**Propósito**                     |
 |----------------|----------------------------------------|  
 |      1860		 |	Full node exporter Linux monitoring   |
 |      3662		 |	Process monitoring                    |
