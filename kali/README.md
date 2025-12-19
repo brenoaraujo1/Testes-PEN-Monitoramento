@@ -248,7 +248,7 @@ Coloque o ID do dashboard (e.g., `1860`) → Load → Selecione o `Prometheus` c
 
 (Também deixarei um .json para ser importado, porém ainda protótipo)
 
-### **Testes de Stress**
+
 
 ### **Gerenciador de Alertas (Alertmanager)**
 
@@ -411,10 +411,63 @@ Connections > Data Sources > + Add new data source > Prometheus
 
 
 
+### **Testes de Stress**
 
 
+- Network stress
+
+#### Debian
+`sudo apt update`
+`sudo apt install iperf3`
+**ou**
+`sudo apt install stress stress-ng iperf3 hping3 -y`
+`iperf3 -s`
+
+#### Kali
+`iperf3 -c <debian_ip>`
+**ou**
+`iperf3 -c <debian_ip> -P 10 -t 60`
+
+#### (red-team avançado) packet flood
+`sudo hping -S --flood -p 80 debian-ip`
 
 
+`sudo hping3 -S <debian_ip> -p 80 --flood`
+
+#### Cpu & memory stress inside debian
+
+`ssh user@debian-ip "stress --cpu 4 --timeout 60"`
+```bash
+sudo apt install stress-ng
+stress-ng --cpu 4 --timeout 60s
+stress-ng --vm 2 --vm-bytes 80% --timeout 60s
+stress-ng --hdd 1 --timeout 60s
+```
+
+#### Applictation-level stress (HTTP)
+**Caso o Debian esteja hosteando um serviço Web**
+
+No Kali:
+```bash
+sudo apt install apache2-utils
+ab -n 10000 -c 100 http://<debian_ip>/
+```
+
+- Hydra
+
+`hydra -h`
+
+`sudo apt update`
+`sudo apt install hydra hydra-gtk -y`
+
+`which hydra`
+`(/usr/bin/hydra)`
+
+
+Exemplo
+
+`hydra -l admin -P rockyou.txt 192.168.56.1 http-post-form \`
+`"/login.php:user=^USER^&pass=^PASS^:Invalid login"`
 
 
 
@@ -489,6 +542,159 @@ Se não:
 ```
 
 Reinicie o prom e verifique `http://<PROM_HOST>:9090/targets` -- deve estar rodando (UP)
+
+
+
+### **Loki**
+
+
+`cd /tmp`
+`wget https://github.com/grafana/loki/releases/latest/download/loki-linux-amd64.zip`
+
+`sudo apt update && sudo apt install -y unzip`
+
+`unzip loki-linux-amd64.zip`
+`chmod +x loki-linux-amd64`
+`sudo mv loki-linux-amd64 /usr/local/bin/loki`
+
+`loki --version`
+
+`sudo mkdir -p /etc/loki`
+`sudo nano /etc/loki/loki-config.yaml`
+
+----------------------------------Dentro do loki-config----------------------------------
+```bash
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+
+ingester:
+  lifecycler:
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+  chunk_idle_period: 5m
+  chunk_retain_period: 30s
+
+schema_config:
+  configs:
+    - from: 2023-01-01
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+storage_config:
+  boltdb_shipper:
+    active_index_directory: /var/lib/loki/index
+    cache_location: /var/lib/loki/cache
+    shared_store: filesystem
+  filesystem:
+    directory: /var/lib/loki/chunks
+
+limits_config:
+  retention_period: 168h
+
+analytics:
+  reporting_enabled: false
+```
+--========----========----========----========----========----========----========--
+
+
+---------------------------------- SYSTEMD SERVICE ----------------------------------
+
+`sudo mkdir -p /var/lib/loki/{index,cache,chunks} `
+
+`sudo nano /etc/systemd/system/loki.service`
+
+---------------------------------- Dentro do `loki.service` ----------------------------------
+```bash
+[Unit]
+Description=Grafana Loki
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/loki -config.file=/etc/loki/loki-config.yaml
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+```
+
+---------------------------------- == ----------------------------------
+
+
+`sudo useradd --system loki`
+`sudo chown -R loki:loki /etc/loki /var/lib/loki`
+
+
+`sudo systemctl daemon-reexec`
+`sudo systemctl daemon-reload`
+`sudo systemctl enable --now loki `
+
+`sudo systemctl status loki`
+
+`curl http://localhost:3100/ready`
+
+output esperado:
+
+'ready'
+
+LOKI PORT: `3100`
+
+
+
+
+### Adicione a Datasource do Loki no Grafana (Kali)
+
+- No Grafana:
+
+`"http://kali_ip:3000" <http://localhost:3000>`
+
+> Adicione a `datasource ` 
+> `loki`
+
+Loki URL:
+`<http://localhost:3000>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
