@@ -1,5 +1,5 @@
-# Testes-PEN-Monitoramento
-### Repositório utilizado para testes PEN e Monitoramento (Feitos em VM)
+# Pentest-Monitoramento
+### Repositório utilizado para Pentest e Monitoramento (Feitos em VM)
 
 
 # ✅ **ESCOPO DE TESTES (PENTEST E MONITORAMENTO)**
