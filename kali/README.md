@@ -441,7 +441,7 @@ Se não:
 
 ###**No Kali (`prometheus.yml`), adicione um `job_name`: **
 
-`bash
+```bash
  scrape_configs:
   - job_name: 'real-windows-desktop'
     static_configs:
@@ -450,7 +450,8 @@ Se não:
       # optional: to request only specific collectors from this scrape:
       # collect[]:
       #   - cpu
-      #   - memory`
+      #   - memory
+```
 
 Reinicie o prom e verifique `http://<PROM_HOST>:9090/targets` -- deve estar rodando (UP)
 
