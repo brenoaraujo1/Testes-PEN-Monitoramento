@@ -430,9 +430,9 @@ Connections > Data Sources > + Add new data source > Prometheus
 
 
 
-### **Exportando o laboratório para outra máquina ´física**
+### **Exportando o laboratório para outra máquina física ou fora da VM**
 
-### A Terceira máquina usada será um W11
+## A Terceira máquina usada será um W11
 
 Use `windows-exporter`
 
