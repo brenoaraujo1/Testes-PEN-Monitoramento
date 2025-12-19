@@ -4,7 +4,7 @@
 
 # ✅**Instalação**
 
-##**1) Faça o download da ISO ou OVA Kali e o download do VirtualBox**
+##1) Faça o download da ISO ou OVA Kali e o download do VirtualBox
 
 ### Disponível no site oficial do Kali ou realizando cadastro/login no NetAcad e se dirigindo ao [hub de recursos e aplicações](https://www.netacad.com/resources/lab-downloads?courseLang=en-US)
 
