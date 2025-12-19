@@ -12,7 +12,7 @@
 
 # ✅**Instruções**
 
-## **2) Criação de uma nova VM no VirtualBox **
+## **2) Criação de uma nova VM no VirtualBox**
 
  - **Tipo:** Linux
 
