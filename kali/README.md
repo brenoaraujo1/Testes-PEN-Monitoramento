@@ -234,6 +234,7 @@ Reinicie:
 **Dashboards Recomendados**
 
 |**Dashboard ID**|		**Purpose**                       |
+|----------------|----------------------------------------|  
 |      1860		 |	Full node exporter Linux monitoring   |
 |      3662		 |	Process monitoring                    |
 |      8919	   	 |	Host status overview                  |
