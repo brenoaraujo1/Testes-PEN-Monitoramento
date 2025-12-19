@@ -441,7 +441,8 @@ Se não:
 
 ###**No Kali (`prometheus.yml`), adicione um `job_name`: **
 
-`scrape_configs:
+`bash
+ scrape_configs:
   - job_name: 'real-windows-desktop'
     static_configs:
       - targets: ['192.168.1.55:9182']   # <-- replace with your Windows desktop IP
