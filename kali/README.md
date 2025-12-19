@@ -258,7 +258,7 @@ Coloque o ID do dashboard (e.g., `1860`) → Load → Selecione o `Prometheus` c
 sudo wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
 sudo tar -xvf alertmanager-0.27.0.linux-amd64.tar.gz`
 
-###Mover e criar diretórios 
+### Mover e criar diretórios 
 
 ```bash
 sudo cp /opt/alertmanager-0.27.0.linux-amd64/alertmanager /usr/local/bin/
