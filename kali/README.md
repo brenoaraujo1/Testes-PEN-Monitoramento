@@ -26,9 +26,9 @@
 
  - **Rede:** Nat ou Bridged (Ambos funcionam)
 
-### **2.1) Importe a ISO e dê boot  **
+### **2.1) Importe a ISO e dê boot**
 
-###**2.2) No caso da OVA**
+### **2.2) No caso da OVA**
 
 ### Caso você baixou a OVA do NetAcad, basta ir em "importar appliance"
 
@@ -64,11 +64,13 @@ Caso precise de permissões:
 
 ### **3.3.2) Extraia o arquivo**
 
- `cd  ~/Downloads
+ ```bash
+ cd  ~/Downloads
 
  tar xvf prometheus *.tar.gz
 
- cd prometheus- * `
+ cd prometheus- *
+```
 
 ### **3.3.3) Rode o `Prom` manualmente**
 
@@ -78,7 +80,7 @@ Prometheus agora está locado em:
 
  `http://localhost:9090 `
 
-###**3.3.4) Adicione um .service (systemd)**
+### **3.3.4) Adicione um .service (systemd)**
 
 Crie um arquivo chamado  `prometheus.service `
 
@@ -86,7 +88,8 @@ Crie um arquivo chamado  `prometheus.service `
 
 Cole no arquivo:
 
- ` [Unit ]
+ ```bash
+ [Unit ]
 
 Description=Prometheus Monitoring
 
@@ -102,25 +105,30 @@ Restart=always
 
  [Install ]
 
-WantedBy=multi-user.target `
+WantedBy=multi-user.target
+
+```
 
 Ative: 
 
 	
 
- `sudo systemctl daemon-reload
+ ```bash
+ sudo systemctl daemon-reload
 
  sudo systemctl enable prometheus
 
  sudo systemctl start prometheus
 
- system status prometheus `
+ system status prometheus
+```
 
 ### **3.4) Implementação do Grafana**
 
 ### **3.4.1) Adicione o repositório**
 
- `sudo apt install  -y apt-transport-https software-properties-common wget
+ ```bash
+sudo apt install  -y apt-transport-https software-properties-common wget
 
 wget  -q  -O  - https://packages.grafana.com/gpg.key | sudo apt-key add  -
 
@@ -128,7 +136,8 @@ echo "deb https://packages.grafana.com/oss/deb stable main" |
 
 sudo tee  -a /etc/apt/sources.list.d/grafana.list
 
-sudo apt update `
+sudo apt update
+```
 
 ### **3.4.2) Instale o Grafana**
 
@@ -136,11 +145,13 @@ sudo apt update `
 
 ### **3.4.3) Utilize os comandos `enable` e `start`**
 
- `sudo systemctl enable grafana-server
+ ```bash
+sudo systemctl enable grafana-server
 
- sudo systemctl start grafana-server `
+sudo systemctl start grafana-server 
+```
 
-(Enable serve para ligar o servidor com o boot da máquina)
+('Enable' server para ligar o servidor com o boot da máquina)
 
 Servidor do grafana está locado em: 
 
@@ -154,7 +165,7 @@ Login Default:
 
 ### **4) Comece o monitoramento**
 
-###**4.1) Instale o `node exporter` (revisar)**
+### **4.1) Instale o `node exporter` (revisar)**
 
  `sudo apt install prometheus-node-exporter  -y `
 
@@ -162,7 +173,7 @@ Servidor está locado em:
 
  `http://localhost:9100/metrics `
 
-###**4.1.1) Adicione-o à config do `Prom`**
+### **4.1.1) Adicione-o à config do `Prom`**
 
 Edite o .yml
 
@@ -170,13 +181,15 @@ Edite o .yml
 
 Adicione:
 
- `scrape _configs:
+ ```bash
+	scrape _configs:
 
    - job _name: 'kali'
 
     static _configs:
 
-      - targets:  ['localhost:9100' ] `
+      - targets:  ['localhost:9100' ]
+```
 
 Reinicie o  `Prom `
 
@@ -184,15 +197,17 @@ Reinicie o  `Prom `
 
 Agora o sistema de  `metrics ` aparece no **Prometheus**e no **Grafana**
 
-###**5) Adicione uma segunda VM (No meu caso estarei utilizando Debian 7)**
+### **5) Adicione uma segunda VM (No meu caso estarei utilizando Debian 7)**
 
-###**5.1)Adicione novamente as opções de pastas compartilhadas caso necessário (tópico 3.1)**
+### **5.1)Adicione novamente as opções de pastas compartilhadas caso necessário (tópico 3.1)**
 
-###**5.1.1) Atualize a VM caso necessário, se não, pule para o tópico "5.1.2".**
+### **5.1.1) Atualize a VM caso necessário, se não, pule para o tópico "5.1.2".**
 
- `sudo apt-get update
+ ```bash
+ sudo apt-get update
 
  sudo apt-get upgrade
+```
 
 ### **5.1.2) Implemente o `node-exporter` ao Debian**
 
@@ -214,27 +229,29 @@ Reinicie:
 `sudo systemctl restart prometheus`
 
 
-###**Importe ou faça dashboards no grafana**
+### **Importe ou faça dashboards no grafana**
 
 **Dashboards Recomendados**
 
-**Dashboard ID**		**Purpose**
-1860				Full node exporter Linux monitoring
-3662				Process monitoring
-8919				Host status overview
-13978				Debian metrics
-11074				System logs + performance
+|**Dashboard ID**|		**Purpose**                       |
+|      1860		 |	Full node exporter Linux monitoring   |
+|      3662		 |	Process monitoring                    |
+|      8919	   	 |	Host status overview                  |
+|      13978	 |	Debian metrics                        |
+|      11074	 |	System logs + performance             |
 
 
-Grafana → Dashboards → Import
+**Grafana → Dashboards → Import**
+
 Coloque o ID do dashboard (e.g., `1860`) → Load → Selecione o `Prometheus` como data source → importar 
+
 (Também deixarei um .json para ser importado, porém ainda protótipo)
 
-###**Testes de Stress**
+### **Testes de Stress**
 
-###**Gerenciador de Alertas (Alertmanager)**
+### **Gerenciador de Alertas (Alertmanager)**
 
-###instalar
+### instalar
 
 `cd /opt
 sudo wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
@@ -242,7 +259,8 @@ sudo tar -xvf alertmanager-0.27.0.linux-amd64.tar.gz`
 
 ###Mover e criar diretórios 
 
-`sudo cp /opt/alertmanager-0.27.0.linux-amd64/alertmanager /usr/local/bin/
+```bash
+sudo cp /opt/alertmanager-0.27.0.linux-amd64/alertmanager /usr/local/bin/
 sudo cp /opt/alertmanager-0.27.0.linux-amd64/amtool /usr/local/bin/
 which alertmanager
 alertmanager --version
@@ -253,27 +271,31 @@ sudo chown alertmanager:alertmanager /usr/local/bin/alertmanager
 sudo chown alertmanager:alertmanager /usr/local/bin/amtool
 sudo chown alertmanager:alertmanager /etc/alertmanager
 sudo chown alertmanager:alertmanager /var/lib/alertmanager
-sudo nano /etc/alertmanager/alertmanager.yml`
+sudo nano /etc/alertmanager/alertmanager.yml
+```
 
-###Dentro da config (.yml)
+### Dentro da config (`.yml`)
 
-`global:
+```bash
+global:
   resolve_timeout: 5m
 
 route:
   receiver: 'default'
 
 receivers:
-  - name: 'default' `
+  - name: 'default'
+```
 
 
-###Crie um .service (systemd)
+### Crie um .service (`systemd`)
 
 `sudo nano /etc/systemd/system/alertmanager.service`
 
-###Dentro da config (.service)
+### Dentro da config (`.service`)
 
-`[Unit]
+```bash
+[Unit]
 Description=Prometheus Alertmanager
 After=network.target
 
@@ -288,47 +310,53 @@ ExecStart=/usr/local/bin/alertmanager \
 Restart=always
 
 [Install]
-WantedBy=multi-user.target`
+WantedBy=multi-user.target
+```
 
 
-###Enable, Start e Status
+### Enable, Start e Status
 
-`sudo systemctl daemon-reload
+```bash
+sudo systemctl daemon-reload
 sudo systemctl enable alertmanager
 sudo systemctl start alertmanager
-sudo systemctl status alertmanager`
+sudo systemctl status alertmanager
+```
 
-###Dentro do navegador:
+### Dentro do navegador:
 
 `http://localhost:9093`
 
 
-###Conecte o Prometheus ao Alertmanager
+### Conecte o Prometheus ao Alertmanager
 
 `sudo nano /etc/prometheus/prometheus.yml`
 
-###Dentro da config (.yml), adicione:
+### Dentro da config (`.yml`), adicione:
 
 
-`alerting:
+```bash
+alerting:
   alertmanagers:
     - static_configs:
         - targets:
-          - "localhost:9093" `
+          - "localhost:9093"
+```
 
 `sudo systemctl restart prometheus`
 
 
 
-###Test Alert
+### Test Alert
 
 Na sua máquina principal: 
 
 `sudo nano /etc/prometheus/alert.rules.yml`
 
-Dentro da .yml:
+Dentro da `.yml`:
 
-`groups:
+```bash
+groups:
 - name: test
   rules:
   - alert: AlwaysFiringTest
@@ -338,7 +366,8 @@ Dentro da .yml:
       severity: warning
     annotations:
       summary: "Test alert"
-      description: "This alert should always fire"`
+      description: "This alert should always fire"
+```
 
 
 Conecte a regra dentro da `prometheus.yml`:
@@ -347,28 +376,32 @@ Conecte a regra dentro da `prometheus.yml`:
 
 Adicione:
 
-`rule_files:
-  - "alert.rules.yml"`
+```bash
+rule_files:
+  - "alert.rules.yml"
+```
 
-`alerting:
+```bash
+alerting:
   alertmanagers:
     - static_configs:
         - targets:
-          - "localhost:9093" `
+          - "localhost:9093"
+```
 
 `sudo systemctl restart prometheus`
 
-###Resultado
+### Resultado
 
 A cada 10-15 segundos abra:
 
 `http://localhost:9093`
 
-###Importante
+### Importante
 Caso haja confirmação de que está rodando perfeitamente, delete a regra `AlwaysFiringTest` dentro da `alert.rules.yml`. Ou ficará rodando para sempre.
 
 
-###Config `.json` Grafana 
+### Config `.json` Grafana 
 
 Após habilitar o Grafana (`grafana-server`), deve-se importar o `prometheus` pela `datasource`
 
@@ -389,16 +422,16 @@ Connections > Data Sources > + Add new data source > Prometheus
 
 
 
-###**Não sei**
 
 
 
 
 
 
-###**Exportando o laboratório para outra máquina ´física**
 
-###A Terceira máquina usada será um W11
+### **Exportando o laboratório para outra máquina ´física**
+
+### A Terceira máquina usada será um W11
 
 Use `windows-exporter`
 
@@ -422,10 +455,11 @@ bash kali:
 
 Se o prometheus der get nas metricas --> sucesso, caso contrário verifique o Firewall ou se o serviço está up e rodando.
 
-###**Caso contrário:**
+### **Caso contrário:**
 `Get-Service windows_exporter`
 
 Caso o `Status` esteja `Running`, OK.
+
 Se não:
 
 `cd "C:\Program Files\windows_exporter"`
@@ -439,7 +473,7 @@ Se não:
 
 
 
-###**No Kali (`prometheus.yml`), adicione um `job_name`: **
+### **No Kali (`prometheus.yml`), adicione um `job_name`: **
 
 ```bash
  scrape_configs:
@@ -462,7 +496,7 @@ Reinicie o prom e verifique `http://<PROM_HOST>:9090/targets` -- deve estar roda
 
 
 
-###**Este `markdown` será atualizado periodicamente, trazendo novas funções e implementações com o decorrer do tempo.**
+### **Este `markdown` será atualizado periodicamente, trazendo novas funções e implementações com o decorrer do tempo.**
 
 
 
