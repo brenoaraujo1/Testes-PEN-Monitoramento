@@ -562,7 +562,7 @@ Reinicie o prom e verifique `http://<PROM_HOST>:9090/targets` -- deve estar roda
 `sudo mkdir -p /etc/loki`
 `sudo nano /etc/loki/loki-config.yaml`
 
-----------------------------------Dentro do loki-config----------------------------------
+----------------------------------Dentro do `loki-config`----------------------------------
 ```bash
 auth_enabled: false
 
