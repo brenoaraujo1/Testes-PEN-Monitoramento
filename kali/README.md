@@ -47,7 +47,8 @@
  - A pasta aparece em:
 
 	 `/media/sf _ <nomedapasta > `
-	 Exemplo:
+
+ - Exemplo:
 	 `C:/Users/user/Downloads`
 
 ### **3.3) Faça o [Download](https://github.com/prometheus/prometheus/releases/download/v3.8.1/prometheus-3.8.1.linux-amd64.tar.gz) e copie o arquivo Prometheus**
