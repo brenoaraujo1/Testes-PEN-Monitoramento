@@ -93,21 +93,22 @@ Crie um arquivo chamado  `prometheus.service `
 Cole no arquivo:
 
  ```bash
- [Unit ]
+ [Unit]
 
 Description=Prometheus Monitoring
 
 After=network.target
 
- [Service ]
+ [Service]
 
 User=root
 
-ExecStart=/home/kali/Downloads/prometheus- */prometheus
+ExecStart=/home/kali/Downloads/prometheus-3.7.3.linux-amd64/prometheus \
+	--config.file=/home/kali/Downloads/prometheus-3.7.3.linux-amd64/prometheus.yml
 
 Restart=always
 
- [Install ]
+ [Install]
 
 WantedBy=multi-user.target
 
