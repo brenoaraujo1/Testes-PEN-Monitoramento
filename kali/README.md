@@ -56,7 +56,7 @@
 
 Exemplo:
 
- ` cp /media/sf _ <nomedapasta >/prometheus *.tar.gz  ~/Downloads/  `
+ ` cp /media/sf _ <nomedapasta >/prometheus *.tar.gz ~/Downloads/   ` (pasta de sua preferencia, no meu caso: ` /home/kali/Downloads ` )
 
 Caso precise de permissões:
 
