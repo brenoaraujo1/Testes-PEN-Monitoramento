@@ -133,15 +133,38 @@ Ative:
 ### **3.4.1) Adicione o repositório**
 
  ```bash
-sudo apt install  -y apt-transport-https software-properties-common wget
+sudo apt install -y wget gnup2 ca-certificates
 
-wget  -q  -O  - https://packages.grafana.com/gpg.key | sudo apt-key add  -
+wget -qO- https://packages.grafana.com/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
 
-echo "deb https://packages.grafana.com/oss/deb stable main" |   
+wget -O /tmp/grafana.key https://packages.grafana.com/gpg.key
 
-sudo tee  -a /etc/apt/sources.list.d/grafana.list
+file /tmp/grafana.key
 
-sudo apt update
+head -n 5 /tmp/grafana.key
+
+apt update
+
+apt install --reinstall ca-certificates
+
+update-ca-certificates
+
+curl -fsSL https://packages.grafana.com/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
+
+gpg --show-keys /usr/share/keyrings/grafana.gpg
+
+wget -qO- https://packages.grafana.com/gpg.key \
+> | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
+
+ls -l /usr/share/keyrings/grafana.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.graafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+
+apt update
+
+apt install grafana
+
+svc grafana-server (svc shell function alias created on ~/.bashrc)
 ```
 
 ### **3.4.2) Instale o Grafana**
