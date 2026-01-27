@@ -158,7 +158,7 @@ wget -qO- https://packages.grafana.com/gpg.key \
 
 ls -l /usr/share/keyrings/grafana.gpg
 
-echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.graafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
 
 apt update
 
