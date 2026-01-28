@@ -464,7 +464,7 @@ Connections > Data Sources > + Add new data source > Prometheus
 
 `sudo hping3 -S <debian_ip> -p 80 --flood`
 
-#### Cpu & memory stress inside debian
+#### Cpu & memory stress (Debian)
 
 `ssh user@debian-ip "stress --cpu 4 --timeout 60"`
 ```bash
